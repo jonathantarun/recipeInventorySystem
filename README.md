@@ -3,6 +3,10 @@
 ## Overview
 Recipe Suggestion App is a web application that allows users to manage their pantry inventory by adding, updating, and tracking ingredients. The application integrates with Firebase Firestore to store pantry data in real-time, ensuring a seamless experience.
 
+## Documentation
+
+[Click here to view my documentation for this project](https://docs.google.com/document/d/1N4QhhZ9JkvLpHW7saSGuP_uUJ5ORi5zMac2nz7KyIto/edit?usp=sharing)
+
 ## Features
 - **Add Ingredients**: Users can add ingredients with specified quantities.
 - **Update Quantities**: If an ingredient already exists, its quantity is updated instead of creating a duplicate.
@@ -49,7 +53,7 @@ Each document in the `recipes` collection represents an dish:
 ```json
 {
   "name": "Chicken Noodles",
-  "ingredients" : { name : "Chicken", quantity : 1
+  "ingredients" : { name : "Chicken", quantity : 1 }
 }
 ```
 
