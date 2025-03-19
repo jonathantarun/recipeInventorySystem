@@ -37,7 +37,7 @@ Recipe Suggestion App is a web application that allows users to manage their pan
    npm run dev
    ```
 
-   Or use this link to check out the [deployed website]().
+   Or use this link to check out the [deployed website](https://recipe-inventory-app.web.app/).
 
 ## Firestore Data Structure
 ### Collection: `pantry`
