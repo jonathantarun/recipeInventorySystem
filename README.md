@@ -30,7 +30,7 @@ Recipe Suggestion App is a web application that allows users to manage their pan
    - Obtain Firebase configuration keys and update `firebase-config.js`.
 4. Start the development server:
    ```bash
-   npm start
+   npm run dev
    ```
 
    Or use this link to check out the [deployed website]().
@@ -44,16 +44,26 @@ Each document in the `pantry` collection represents an ingredient:
   "quantity": 10
 }
 ```
+### Collection: `recipes`
+Each document in the `recipes` collection represents an dish:
+```json
+{
+  "name": "Chicken Noodles",
+  "ingredients" : { name : "Chicken", quantity : 1
+}
+```
 
 ## Usage
 1. Enter an ingredient name and quantity.
 2. Click "Add Ingredient" to add/update the item.
 3. The pantry list updates in real-time.
+4. Use the `Add Recipe` Tab to add new recipes.
+5. Check the "Shopping List" to see if your pantry is running out of any ingredient.
+6. Click on "Make Recipe" in the `Recipe Suggestions` tab to create a dish - this will use up the number of ingredients specified (deleting the same number of ingredients in the database).
 
 ## Future Improvements
 - Add user authentication for personalized pantry management.
 - Implement categories for better ingredient organization.
-- Create a "Make Recipe" button to deduct ingredient quantities when cooking a recipe.
 
 ## License
 This project is open-source under the [MIT License](LICENSE).
