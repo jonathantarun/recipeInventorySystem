@@ -17,8 +17,8 @@ Recipe Suggestion App is a web application that allows users to manage their pan
 ## Installation
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/pantry-manager.git
-   cd pantry-manager
+   git clone https://github.com/jonathantarun/recipeInventorySystem.git
+   cd recipeInventorySystem
    ```
 2. Install dependencies:
    ```bash
@@ -32,6 +32,8 @@ Recipe Suggestion App is a web application that allows users to manage their pan
    ```bash
    npm start
    ```
+
+   Or use this link to check out the [deployed website]().
 
 ## Firestore Data Structure
 ### Collection: `pantry`
