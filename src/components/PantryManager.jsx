@@ -7,6 +7,7 @@ import {
   getDocs,
   addDoc,
   updateDoc,
+  deleteDoc,
   doc,
 } from 'firebase/firestore'
 import { db } from '../firebase-config'
@@ -30,16 +31,16 @@ function PantryManager() {
     return () => unsubscribe()
   }, [])
 
-  // Add or update ingredient in Firestore
+  // Add or update an ingredient in Firestore
   const addIngredient = async (e) => {
     e.preventDefault()
     if (!name.trim()) return
 
-    // Normalize the name (optional: store in lowercase to avoid duplicates like "Eggs" vs "eggs")
-    const normalizedName = name.trim()
+    // Normalize the name to lowercase and trim whitespace
+    const normalizedName = name.trim().toLowerCase()
 
     try {
-      // Check if the ingredient already exists
+      // Check if the ingredient already exists in Firestore
       const qCheck = query(
         collection(db, 'pantry'),
         where('name', '==', normalizedName)
@@ -47,7 +48,7 @@ function PantryManager() {
       const querySnapshot = await getDocs(qCheck)
 
       if (!querySnapshot.empty) {
-        // Ingredient exists, update the existing document
+        // If found, update its quantity
         const existingDoc = querySnapshot.docs[0]
         const existingData = existingDoc.data()
         const newQuantity = (existingData.quantity || 0) + quantity
@@ -55,19 +56,31 @@ function PantryManager() {
         await updateDoc(doc(db, 'pantry', existingDoc.id), {
           quantity: newQuantity,
         })
+        console.log(`Updated "${normalizedName}" to quantity ${newQuantity}`)
       } else {
-        // Ingredient does not exist, create a new document
+        // If not found, add a new document
         await addDoc(collection(db, 'pantry'), {
           name: normalizedName,
           quantity,
         })
+        console.log(`Added new ingredient: "${normalizedName}"`)
       }
 
-      // Reset the form
+      // Reset form fields
       setName('')
       setQuantity(1)
     } catch (error) {
       console.error('Error adding/updating ingredient:', error)
+    }
+  }
+
+  // Delete an ingredient from Firestore
+  const deleteIngredient = async (id) => {
+    try {
+      await deleteDoc(doc(db, 'pantry', id))
+      console.log(`Deleted ingredient with id: ${id}`)
+    } catch (error) {
+      console.error('Error deleting ingredient:', error)
     }
   }
 
@@ -96,7 +109,8 @@ function PantryManager() {
       <ul>
         {ingredients.map((item) => (
           <li key={item.id}>
-            {item.name} - {item.quantity}
+            {item.name} - {item.quantity}{' '}
+            <button onClick={() => deleteIngredient(item.id)}>Delete</button>
           </li>
         ))}
       </ul>
