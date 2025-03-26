@@ -3,9 +3,14 @@
 ## Overview
 Recipe Suggestion App is a web application that allows users to manage their pantry inventory by adding, updating, and tracking ingredients. The application integrates with Firebase Firestore to store pantry data in real-time, ensuring a seamless experience.
 
-## Documentation
+## Links
 
-[Click here to view my documentation for this project](https://docs.google.com/document/d/1N4QhhZ9JkvLpHW7saSGuP_uUJ5ORi5zMac2nz7KyIto/edit?usp=sharing)
+[1. Documentation for this project](https://docs.google.com/document/d/1N4QhhZ9JkvLpHW7saSGuP_uUJ5ORi5zMac2nz7KyIto/edit?usp=sharing)
+[2. Rubric Video for the TAs](https://youtu.be/-8Gqd4vqmDI)
+[3. App Demo video](https://youtu.be/bSoLQwnfI0s)
+[4. Figma Mockups](https://www.figma.com/design/pszNbEwkNlayMwxuhgE699/Recipe-Inventory-App?node-id=14-41&t=7R7olEgtCWm61YoN-1)
+[5. Modules Diagram](https://lucid.app/lucidchart/2ab8d6fb-b52e-4ef8-ba18-25c2e9b34ab5/edit?viewport_loc=-660%2C-301%2C4282%2C2188%2C0_0&invitationId=inv_406435ac-2e4b-4651-a08a-a82c5a12887a)
+[6. Deployed Website](https://recipe-inventory-app.web.app/)
 
 ## Features
 - **Add Ingredients**: Users can add ingredients with specified quantities.
