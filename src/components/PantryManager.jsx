@@ -43,7 +43,7 @@ function PantryManager() {
       // Check if the ingredient already exists in Firestore
       const qCheck = query(
         collection(db, 'pantry'),
-        where('name', '==', normalizedName)
+        where('name', '==', name)
       )
       const querySnapshot = await getDocs(qCheck)
 
@@ -60,7 +60,7 @@ function PantryManager() {
       } else {
         // If not found, add a new document
         await addDoc(collection(db, 'pantry'), {
-          name: normalizedName,
+          name: name,
           quantity,
         })
         console.log(`Added new ingredient: "${normalizedName}"`)
