@@ -31,16 +31,16 @@ function PantryManager() {
     return () => unsubscribe()
   }, [])
 
-  // Add or update an ingredient in Firestore
+  // Add or update ingredient in Firestore
   const addIngredient = async (e) => {
     e.preventDefault()
     if (!name.trim()) return
 
-    // Normalize the name to lowercase and trim whitespace
+    // Normalize the name: trim spaces and convert to lowercase
     const normalizedName = name.trim().toLowerCase()
 
     try {
-      // Check if the ingredient already exists in Firestore
+      // Check if ingredient already exists in Firestore
       const qCheck = query(
         collection(db, 'pantry'),
         where('name', '==', name)
@@ -48,7 +48,7 @@ function PantryManager() {
       const querySnapshot = await getDocs(qCheck)
 
       if (!querySnapshot.empty) {
-        // If found, update its quantity
+        // Ingredient exists: update its quantity
         const existingDoc = querySnapshot.docs[0]
         const existingData = existingDoc.data()
         const newQuantity = (existingData.quantity || 0) + quantity
@@ -58,7 +58,7 @@ function PantryManager() {
         })
         console.log(`Updated "${normalizedName}" to quantity ${newQuantity}`)
       } else {
-        // If not found, add a new document
+        // Ingredient does not exist: add a new document
         await addDoc(collection(db, 'pantry'), {
           name: name,
           quantity,
@@ -66,7 +66,7 @@ function PantryManager() {
         console.log(`Added new ingredient: "${normalizedName}"`)
       }
 
-      // Reset form fields
+      // Reset input fields
       setName('')
       setQuantity(1)
     } catch (error) {
@@ -83,6 +83,12 @@ function PantryManager() {
       console.error('Error deleting ingredient:', error)
     }
   }
+
+  // Calculate total quantity using reduce (FP example)
+  const totalQuantity = ingredients.reduce(
+    (total, item) => total + item.quantity,
+    0
+  )
 
   return (
     <div>
@@ -114,6 +120,7 @@ function PantryManager() {
           </li>
         ))}
       </ul>
+      <h3>Total Quantity: {totalQuantity}</h3>
     </div>
   )
 }
